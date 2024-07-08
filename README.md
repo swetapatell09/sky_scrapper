@@ -1,5 +1,4 @@
 
-https://github.com/swetapatell09/sky_scrapper/assets/165981407/3b69fcae-2580-4f92-92ec-e1614e29725f
 # sky_scrapper
 
 "Sky Scrapper" is a feature-rich weather application built using Flutter, incorporating key
