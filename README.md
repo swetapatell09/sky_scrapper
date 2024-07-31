@@ -15,8 +15,8 @@ desired locations.
 == ScreenShots ==
 <p>
  <img src="https://github.com/swetapatell09/sky_scrapper/assets/165981407/b936bddb-843c-4381-81fd-d969b14bc00c" height="400px" width="200px"/>
-<img src="https://github.com/swetapatell09/sky_scrapper/assets/165981407/47bdef0b-3a2e-4482-b929-ccadac48ef40" height="400px" width="200px"/>
-
-https://github.com/swetapatell09/sky_scrapper/assets/165981407/6d860464-a581-450d-9d85-a256af8ac806
-
+<img src="https://github.com/user-attachments/assets/9e8abe62-6a20-4563-a00c-ad9ad65ca933" height="400px" width="200px"/>
+<img src="https://github.com/user-attachments/assets/d13ee21b-faa5-40d7-80dd-bf2897d94063" height="400px" width="200px"/>
+<img src="https://github.com/user-attachments/assets/b463b99b-168e-4b37-9326-9cc46e437d0e" height="400px" width="200px"/>
+ <img src="https://github.com/user-attachments/assets/db0c2c07-aac2-4883-a154-7d1ee5e48687" height="400px" width="200px"/>
 </p>
