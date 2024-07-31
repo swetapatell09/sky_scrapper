@@ -12,7 +12,7 @@ class HomeProvider with ChangeNotifier {
   ThemeMode mode = ThemeMode.light;
   IconData themeMode = Icons.dark_mode;
   bool isLight = false;
-  List<String> book = [];
+  List<String> bookList = [];
   String? getUrl;
 
   Future<void> weatherGetData(String city) async {
@@ -65,5 +65,30 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
+  }
+
+  void getData() async {
+    if (await applyData() == null) {
+      bookList = [];
+    } else {
+      bookList = (await applyData())!;
+    }
+    notifyListeners();
+  }
+
+  void setData(String city) {
+    getData();
+    bookList.add(city);
+    saveData(bookMark: bookList);
+    getData();
+    notifyListeners();
+  }
+
+  void deleteContact(int r) {
+    getData();
+    bookList.removeAt(r);
+    saveData(bookMark: bookList);
+    getData();
+    notifyListeners();
   }
 }
