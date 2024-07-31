@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     context.read<HomeProvider>().weatherGetData("surat");
     context.read<HomeProvider>().checkInternet();
+    context.read<HomeProvider>().getData();
   }
 
   @override
@@ -36,6 +37,19 @@ class _HomeScreenState extends State<HomeScreen> {
               providerW!.setTheme();
             },
           ),
+          IconButton(
+            onPressed: () {
+              bottom();
+            },
+            icon: const Icon(Icons.bookmark),
+          ),
+          providerW!.homeModel != null
+              ? IconButton(
+                  onPressed: () {
+                    providerW!.setData(providerW!.homeModel!.name!);
+                  },
+                  icon: const Icon(Icons.favorite))
+              : Container()
         ],
         centerTitle: true,
       ),
@@ -55,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         IconButton(
                           onPressed: () {
                             providerR!.weatherGetData(txtName.text);
+                            txtName.clear();
                           },
                           icon: const Icon(Icons.search),
                         )
@@ -83,12 +98,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   : Stack(
                       children: [
-                        Image.asset(
-                          "assets/image/weather1.png",
-                          height: MediaQuery.sizeOf(context).height - 100,
-                          width: MediaQuery.sizeOf(context).width,
-                          fit: BoxFit.cover,
-                        ),
+                        providerW!.changeTheme == true
+                            ? Image.asset(
+                                "assets/image/sky_scrapper_dark.png",
+                                height: MediaQuery.sizeOf(context).height - 100,
+                                width: MediaQuery.sizeOf(context).width,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset("assets/image/sky_scrapper_light.png",
+                                height: MediaQuery.sizeOf(context).height - 100,
+                                width: MediaQuery.sizeOf(context).width,
+                                fit: BoxFit.cover),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -594,6 +614,51 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  void bottom() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: 500,
+          width: MediaQuery.sizeOf(context).width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Favourite City",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: providerW!.bookList.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        onTap: () {
+                          providerW!.weatherGetData(providerW!.bookList[index]);
+                          Navigator.pop(context);
+                        },
+                        title: Text("${providerW!.bookList[index]}"),
+                        trailing: IconButton(
+                          onPressed: () {
+                            providerW!.deleteContact(index);
+                            providerW!.getData();
+                          },
+                          icon: const Icon(Icons.delete),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
